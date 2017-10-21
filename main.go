@@ -1,14 +1,13 @@
 package sqlutil
 
 import (
-	"fmt"
 	"strings"
 	"strconv"
 )
 
 func ReplaceIn(sql string, args []string) string {
 	placeholder := strings.Join(args, ",")
-	return fmt.Sprintf(sql, "(" + placeholder + ")")
+	return strings.Replace(sql, "%s", "(" + placeholder + ")", 1)
 }
 
 func ReplaceInWithInt(sql string, args []int) string {
